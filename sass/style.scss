@@ -1,0 +1,279 @@
+@font-face {
+  font-family: 'SuisseIntl';
+  src:  url('../fonts/SuisseIntl-Regular.woff') format('woff')
+}
+
+$color_1: #7A869A;
+$color_2: #091E42;
+$color_3: #FFF;
+$color_4: #EBECF0;
+$color_5: #F4F5F7;
+$color_6: #2684FF;
+$color_7: #0065FF;
+$color_8: #FFC400;
+$color_9: #FFAB00;
+$color_10: #57D9A3;
+$color_11: #36B37E;
+$font_family: 'SuisseIntl', 'Arial', sans-serif;
+
+
+html {
+	box-sizing: border-box;
+	font-size: 16px;
+	background: $color_3;
+}
+
+* {
+	box-sizing: inherit;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+	&:before {
+		box-sizing: inherit;
+		box-sizing: border-box;
+	}
+	&:after {
+		box-sizing: inherit;
+		box-sizing: border-box;
+	}
+}
+
+body {
+	margin: 0;
+	text-align: center;
+	font-family: $font_family;
+}
+
+input {
+	font-size: 16px;
+	background-color: $color_4;
+  border-radius: 4px;
+
+	&:focus, &:hover {
+		background-color: $color_5;
+  }
+  
+	&::placeholder {
+		color: $color_1;
+	}
+}
+
+.display__time-left {
+  font-variant-numeric: tabular-nums;
+	font-weight: bold;
+	font-size: 17rem;
+	margin: 0;
+	color: $color_2;
+}
+
+.timer {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.timer__presets {
+	display: flex;
+	padding-top: 5rem;
+	padding-left: 5rem;
+	padding-right: 5rem;
+  
+  > * {
+		flex: 1;
+	}
+  
+  form {
+		flex: 1;
+		display: flex;
+	}
+  
+  input {
+		flex: 1;
+		border: 0;
+    padding: 16px;
+    
+    &[type=number]::-webkit-inner-spin-button,
+    [type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0;
+    }
+	}
+}
+
+.timer__button {
+	cursor: pointer;
+	margin-right: 2rem;
+	background: none;
+	border: 2px solid transparent;
+	color: $color_2;
+	font-size: 16px;
+	background: rgba(0,0,0,0);
+	border-radius: 4px;
+  
+  &:hover {
+		border: 2px solid $color_6;
+  }
+  
+	&:focus {
+		border: 2px solid $color_6;
+	}
+}
+
+.timer__controls {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 4rem;
+}
+
+.controls__button {
+	cursor: pointer;
+	position: relative;
+	width: 250px;
+	// margin-right: 2rem;
+	background: none;
+	border: 2px solid transparent;
+	font-size: 32px;
+	border-radius: 4px;
+	padding: 1rem;
+}
+
+.reset {
+  will-change: transform;
+  outline: none;
+	background-color: $color_5;
+	border: 1px solid $color_4;
+  box-shadow: 0 0 10px -4px rgba(9, 30, 66, .3);
+  -webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+}
+
+.start {
+  will-change: transform;
+  outline: none;
+	color: $color_3;
+	background-color: $color_6;
+	box-shadow: 0 0 10px -4px rgba(0, 101, 255, .2);
+	-webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+}
+
+.pause {
+  // display: none;
+  will-change: transform;
+  outline: none;
+	color: $color_3;
+	background-color: $color_8;
+	box-shadow: 0 0 10px -4px rgba(255, 171, 0, .2);
+	-webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+}
+
+.continue {
+  will-change: transform;
+  outline: none;
+	color: $color_3;
+	background-color: $color_10;
+	box-shadow: 0 0 10px -4px rgba(0, 101, 255, .2);
+	-webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+	transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
+}
+
+.controls__button.reset {
+  margin-left: 5rem;
+
+	&:hover {
+		transform: translateY(-3px);
+		background-color: $color_4;
+		box-shadow: 0 20px 40px -8px rgba(9, 30, 66, .2);
+  }
+  
+	&:active {
+		box-shadow: none;
+		transform: translateY(1px);
+	}
+}
+
+.controls__button.start {
+  margin-right: 5rem;
+
+	&:hover {
+		transform: translateY(-3px);
+		background-color: $color_7;
+		box-shadow: 0 20px 40px -8px rgba(0, 101, 255, .5);
+  }
+  
+	&:active {
+		box-shadow: none;
+		transform: translateY(1px);
+	}
+}
+
+.controls__button.pause {
+  margin-right: 5rem;
+
+	&:hover {
+		transform: translateY(-3px);
+		background-color: $color_9;
+		box-shadow: 0 20px 40px -8px rgba(255, 171, 0, .5);
+  }
+  
+	&:active {
+		box-shadow: none;
+		transform: translateY(1px);
+	}
+}
+
+.controls__button.continue {
+  margin-right: 5rem;
+
+	&:hover {
+		transform: translateY(-3px);
+		background-color: $color_11;
+		box-shadow: 0 20px 40px -8px rgba($color_10, .6);
+  }
+  
+	&:active {
+		box-shadow: none;
+		transform: translateY(1px);
+	}
+}
+
+.display {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.display__end-time {
+	font-size: 48px;
+	color: $color_3;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.fade-on-pause {
+  animation: fade-in-out 2s ease-out infinite;
+}
+
+@keyframes fade-in-out {
+  0% {
+    color: $color_2;
+  }
+  50% {
+    color: $color_7;
+    opacity: .7;
+  }
+  100% {
+    color: $color_2;
+  }
+}

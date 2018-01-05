@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Timer</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.min.css">
+</head>
+<body>
+  <div class="timer">
+    <div class="timer__presets">
+      <button data-time="10" class="timer__button">10 секунд</button>
+      <button data-time="60" class="timer__button">1 минута</button>
+      <button data-time="300" class="timer__button">5 минут</button>
+      <button data-time="1800" class="timer__button">30 минут</button>
+      <form name="customForm" id="custom">
+        <input type="number" name="minutes" placeholder="Введите минуты">
+      </form>
+    </div>
+    <div class="display">
+      <h1 class="display__time-left">0:00</h1>
+      <p class="display__end-time"></p>
+    </div>
+    <div class="timer__controls">
+      <button class="controls__button reset">Сбросить</button>
+      <button class="controls__button start">Старт</button>
+      <button class="controls__button pause hidden">Пауза</button>
+      <button class="controls__button continue hidden">Продолжить</button>
+    </div>
+  </div>
+
+  <script src="/js/timer.js"></script>
+</body>
+</html>

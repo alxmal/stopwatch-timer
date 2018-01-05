@@ -1,0 +1,32 @@
+{
+  "name": "anketa",
+  "version": "1.0.0",
+  "description": "Anketa Call-center",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "7.1.x",
+    "browser-sync": "2.18.x",
+    "del": "^3.0.0",
+    "gulp": "3.9.x",
+    "gulp-csso": "^3.0.0",
+    "gulp-plumber": "1.1.x",
+    "gulp-postcss": "7.0.x",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "gulp copy && gulp server"
+  },
+  "browserslist": [
+    "last 10 versions",
+    "IE 10",
+    "Firefox ESR"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "gitlab"
+  },
+  "author": "Altigin Artem & Aleksandr Malafeev",
+  "license": "ISC"
+}
