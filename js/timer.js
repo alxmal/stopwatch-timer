@@ -6,6 +6,7 @@ var timePresetButtons = document.querySelectorAll('[data-time]');
 var startButton = document.querySelector('.start');
 var resetButton = document.querySelector('.reset');
 var pauseButton = document.querySelector('.pause');
+var continueButton = document.querySelector('.continue');
 
 function startTimer(seconds) {
   clearInterval(countdown);
@@ -17,6 +18,7 @@ function startTimer(seconds) {
       secondsLeft = Math.round((then - Date.now()) / 1000);
       
       if(secondsLeft < 0) {
+        timerDisplay.classList.add('fade-on-pause');
         clearInterval(countdown);
         return;
       }
@@ -24,6 +26,11 @@ function startTimer(seconds) {
       displayTimeLeft(secondsLeft);
     }, 1000);
 }
+
+// function pause() {
+//   clearInterval(countdown);
+//   displayTimeLeft(secondsLeft);
+// }
 
 function displayTimeLeft(seconds) {
   var minutes = Math.floor(seconds / 60);
@@ -35,9 +42,10 @@ function displayTimeLeft(seconds) {
 
 function setTimePreset() {
   var seconds = parseInt(this.dataset.time);
+  timerDisplay.classList.remove('fade-on-pause');
   clearInterval(countdown);
-  displayTimeLeft(seconds);
-  tempTime = seconds;
+  tempTime += seconds;
+  displayTimeLeft(tempTime);
 }
 
 timePresetButtons.forEach(function(button) {
@@ -57,7 +65,11 @@ document.customForm.addEventListener('submit', function(e) {
 resetButton.addEventListener('click', function(e) {
   timerDisplay.textContent = '0:00';
   timerDisplay.classList.remove('fade-on-pause');
+  startButton.classList.remove('hidden');
+  pauseButton.classList.add('hidden');
+  continueButton.classList.add('hidden');
   document.title = '0:00';
+  tempTime = 0;
   clearInterval(countdown);
 });
 
@@ -70,7 +82,16 @@ startButton.addEventListener('click', function(e) {
 
 pauseButton.addEventListener('click', function(e) {
   // startTimer(tempTime);
+  clearInterval(countdown);
+  displayTimeLeft(secondsLeft);
   pauseButton.classList.add('hidden');
-  startButton.classList.remove('hidden');
+  continueButton.classList.remove('hidden');
   timerDisplay.classList.add('fade-on-pause');
+});
+
+continueButton.addEventListener('click', function(e) {
+  startTimer(secondsLeft);
+  pauseButton.classList.remove('hidden');
+  continueButton.classList.add('hidden');
+  timerDisplay.classList.remove('fade-on-pause');
 });

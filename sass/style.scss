@@ -3,24 +3,14 @@
   src:  url('../fonts/SuisseIntl-Regular.woff') format('woff')
 }
 
-$color_1: #7A869A;
-$color_2: #091E42;
-$color_3: #FFF;
-$color_4: #EBECF0;
-$color_5: #F4F5F7;
-$color_6: #2684FF;
-$color_7: #0065FF;
-$color_8: #FFC400;
-$color_9: #FFAB00;
-$color_10: #57D9A3;
-$color_11: #36B37E;
-$font_family: 'SuisseIntl', 'Arial', sans-serif;
+@import 'colors';
 
+$font_family: 'SuisseIntl', 'Arial', sans-serif;
 
 html {
 	box-sizing: border-box;
 	font-size: 16px;
-	background: $color_3;
+	background: $n0;
 }
 
 * {
@@ -47,15 +37,15 @@ body {
 
 input {
 	font-size: 16px;
-	background-color: $color_4;
+	background-color: $n30;
   border-radius: 4px;
 
 	&:focus, &:hover {
-		background-color: $color_5;
+		background-color: $n20;
   }
   
 	&::placeholder {
-		color: $color_1;
+		color: $n80;
 	}
 }
 
@@ -64,7 +54,7 @@ input {
 	font-weight: bold;
 	font-size: 17rem;
 	margin: 0;
-	color: $color_2;
+	color: $n900;
 }
 
 .timer {
@@ -106,17 +96,16 @@ input {
 	margin-right: 2rem;
 	background: none;
 	border: 2px solid transparent;
-	color: $color_2;
+	color: $n900;
 	font-size: 16px;
-	background: rgba(0,0,0,0);
 	border-radius: 4px;
   
   &:hover {
-		border: 2px solid $color_6;
+		border: 2px solid $b300;
   }
   
 	&:focus {
-		border: 2px solid $color_6;
+		border: 2px solid $b300;
 	}
 }
 
@@ -127,6 +116,7 @@ input {
 }
 
 .controls__button {
+  outline: none;
 	cursor: pointer;
 	position: relative;
 	width: 250px;
@@ -140,10 +130,10 @@ input {
 
 .reset {
   will-change: transform;
-  outline: none;
-	background-color: $color_5;
-	border: 1px solid $color_4;
-  box-shadow: 0 0 10px -4px rgba(9, 30, 66, .3);
+  // outline: none;
+	background-color: $n20;
+	border: 1px solid $n30;
+  box-shadow: 0 0 10px -4px rgba($n900, .3);
   -webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
 	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
 	transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
@@ -151,9 +141,9 @@ input {
 
 .start {
   will-change: transform;
-  outline: none;
-	color: $color_3;
-	background-color: $color_6;
+  // outline: none;
+	color: $n0;
+	background-color: $b300;
 	box-shadow: 0 0 10px -4px rgba(0, 101, 255, .2);
 	-webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
 	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
@@ -161,11 +151,10 @@ input {
 }
 
 .pause {
-  // display: none;
   will-change: transform;
-  outline: none;
-	color: $color_3;
-	background-color: $color_8;
+  // outline: none;
+	color: $n0;
+	background-color: $y300;
 	box-shadow: 0 0 10px -4px rgba(255, 171, 0, .2);
 	-webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
 	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
@@ -174,9 +163,9 @@ input {
 
 .continue {
   will-change: transform;
-  outline: none;
-	color: $color_3;
-	background-color: $color_10;
+  // outline: none;
+	color: $n0;
+	background-color: $g300;
 	box-shadow: 0 0 10px -4px rgba(0, 101, 255, .2);
 	-webkit-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
 	-moz-transition: box-shadow .2s ease-out, background-color .2s, transform .1s ease-out;
@@ -188,7 +177,7 @@ input {
 
 	&:hover {
 		transform: translateY(-3px);
-		background-color: $color_4;
+		background-color: $n30;
 		box-shadow: 0 20px 40px -8px rgba(9, 30, 66, .2);
   }
   
@@ -203,7 +192,7 @@ input {
 
 	&:hover {
 		transform: translateY(-3px);
-		background-color: $color_7;
+		background-color: $b400;
 		box-shadow: 0 20px 40px -8px rgba(0, 101, 255, .5);
   }
   
@@ -218,7 +207,7 @@ input {
 
 	&:hover {
 		transform: translateY(-3px);
-		background-color: $color_9;
+		background-color: $y400;
 		box-shadow: 0 20px 40px -8px rgba(255, 171, 0, .5);
   }
   
@@ -233,8 +222,8 @@ input {
 
 	&:hover {
 		transform: translateY(-3px);
-		background-color: $color_11;
-		box-shadow: 0 20px 40px -8px rgba($color_10, .6);
+		background-color: $g400;
+		box-shadow: 0 20px 40px -8px rgba($g300, .6);
   }
   
 	&:active {
@@ -253,7 +242,7 @@ input {
 
 .display__end-time {
 	font-size: 48px;
-	color: $color_3;
+	color: $n500;
 }
 
 .hidden {
@@ -267,13 +256,13 @@ input {
 
 @keyframes fade-in-out {
   0% {
-    color: $color_2;
+    color: $n900;
   }
   50% {
-    color: $color_7;
+    // color: $b300;
     opacity: .7;
   }
   100% {
-    color: $color_2;
+    color: $n900;
   }
 }
