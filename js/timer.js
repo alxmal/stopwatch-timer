@@ -55,8 +55,10 @@ function setTimePreset() {
   timerDisplay.classList.remove('fade-on-pause');
   clearInterval(countdown);
   startTimer(seconds);
-  startButton.classList.add('hidden');
-  pauseButton.classList.remove('hidden');
+  // startButton.classList.remove('hidden');
+  // resetButton.classList.remove('hidden');
+  startButton.classList.remove('fade-out-up');
+  resetButton.classList.remove('fade-out-up');
   timerDisplay.classList.remove('fade-on-pause');
   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
 }
@@ -79,36 +81,36 @@ document.customForm.addEventListener('submit', function(e) {
   this.reset();
 });
 
-resetButton.addEventListener('click', function(e) {
-  timerDisplay.textContent = '0:00';
-  timerDisplay.classList.remove('fade-on-pause');
-  startButton.classList.remove('hidden');
-  pauseButton.classList.add('hidden');
-  continueButton.classList.add('hidden');
-  document.title = '0:00';
-  clearInterval(countdown);
-  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
-});
+// resetButton.addEventListener('click', function(e) {
+//   timerDisplay.textContent = '0:00';
+//   timerDisplay.classList.remove('fade-on-pause');
+//   startButton.classList.remove('hidden');
+//   pauseButton.classList.add('hidden');
+//   continueButton.classList.add('hidden');
+//   document.title = '0:00';
+//   clearInterval(countdown);
+//   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
+// });
 
-startButton.addEventListener('click', function(e) {
-  startTimer(secondsLeft);
-  startButton.classList.add('hidden');
-  pauseButton.classList.remove('hidden');
-  timerDisplay.classList.remove('fade-on-pause');
-  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
-});
+// startButton.addEventListener('click', function(e) {
+//   startTimer(secondsLeft);
+//   startButton.classList.add('hidden');
+//   pauseButton.classList.remove('hidden');
+//   timerDisplay.classList.remove('fade-on-pause');
+//   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
+// });
 
-pauseButton.addEventListener('click', function(e) {
-  clearInterval(countdown);
-  displayTimeLeft(secondsLeft);
-  pauseButton.classList.add('hidden');
-  continueButton.classList.remove('hidden');
-  timerDisplay.classList.add('fade-on-pause');
-});
+// pauseButton.addEventListener('click', function(e) {
+//   clearInterval(countdown);
+//   displayTimeLeft(secondsLeft);
+//   pauseButton.classList.add('hidden');
+//   continueButton.classList.remove('hidden');
+//   timerDisplay.classList.add('fade-on-pause');
+// });
 
-continueButton.addEventListener('click', function(e) {
-  startTimer(secondsLeft);
-  pauseButton.classList.remove('hidden');
-  continueButton.classList.add('hidden');
-  timerDisplay.classList.remove('fade-on-pause');
-});
+// continueButton.addEventListener('click', function(e) {
+//   startTimer(secondsLeft);
+//   pauseButton.classList.remove('hidden');
+//   continueButton.classList.add('hidden');
+//   timerDisplay.classList.remove('fade-on-pause');
+// });
