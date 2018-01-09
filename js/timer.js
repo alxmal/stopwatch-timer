@@ -1,12 +1,13 @@
 var countdown;
-var tempTime = 0;
-var secondsLeft;
+var secondsLeft = 0;
 var timerDisplay = document.querySelector('.display__time-left');
+var timerPresetBlock = document.querySelector('.timer__presets');
 var timePresetButtons = document.querySelectorAll('[data-time]');
 var startButton = document.querySelector('.start');
 var resetButton = document.querySelector('.reset');
 var pauseButton = document.querySelector('.pause');
 var continueButton = document.querySelector('.continue');
+// var bgColors = ['#091c6b', '#66ecdb'];
 
 function startTimer(seconds) {
   clearInterval(countdown);
@@ -27,10 +28,19 @@ function startTimer(seconds) {
     }, 1000);
 }
 
-// function pause() {
-//   clearInterval(countdown);
-//   displayTimeLeft(secondsLeft);
-// }
+function toggleClassDelayed(elem, cssClass, delay) {
+  // debugger;
+  var count = 0;
+  var delayTimer = setInterval(function() {
+    console.log(count);
+    if (count < elem.children.length) {
+      elem.children[count].classList.toggle(cssClass);
+      count++;
+    } else {
+      clearInterval(delayTimer);
+    }
+  }, delay);
+}
 
 function displayTimeLeft(seconds) {
   var minutes = Math.floor(seconds / 60);
@@ -44,8 +54,11 @@ function setTimePreset() {
   var seconds = parseInt(this.dataset.time);
   timerDisplay.classList.remove('fade-on-pause');
   clearInterval(countdown);
-  tempTime += seconds;
-  displayTimeLeft(tempTime);
+  startTimer(seconds);
+  startButton.classList.add('hidden');
+  pauseButton.classList.remove('hidden');
+  timerDisplay.classList.remove('fade-on-pause');
+  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
 }
 
 timePresetButtons.forEach(function(button) {
@@ -56,9 +69,13 @@ document.customForm.addEventListener('submit', function(e) {
   e.preventDefault();
   clearInterval(countdown);
   var mins = this.minutes.value;
-  tempTime = mins * 60;
-  displayTimeLeft(tempTime);
-  // startTimer(mins * 60);
+  seconds = mins * 60;
+  // displayTimeLeft(tempTime);
+  startTimer(mins * 60);
+  startButton.classList.add('hidden');
+  pauseButton.classList.remove('hidden');
+  timerDisplay.classList.remove('fade-on-pause');
+  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
   this.reset();
 });
 
@@ -69,19 +86,19 @@ resetButton.addEventListener('click', function(e) {
   pauseButton.classList.add('hidden');
   continueButton.classList.add('hidden');
   document.title = '0:00';
-  tempTime = 0;
   clearInterval(countdown);
+  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
 });
 
 startButton.addEventListener('click', function(e) {
-  startTimer(tempTime);
+  startTimer(secondsLeft);
   startButton.classList.add('hidden');
   pauseButton.classList.remove('hidden');
   timerDisplay.classList.remove('fade-on-pause');
+  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
 });
 
 pauseButton.addEventListener('click', function(e) {
-  // startTimer(tempTime);
   clearInterval(countdown);
   displayTimeLeft(secondsLeft);
   pauseButton.classList.add('hidden');

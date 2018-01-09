@@ -10,7 +10,7 @@ $font_family: 'SuisseIntl', 'Arial', sans-serif;
 html {
 	box-sizing: border-box;
 	font-size: 16px;
-	background: $n0;
+	background: $bg01;
 }
 
 * {
@@ -37,15 +37,18 @@ body {
 
 input {
 	font-size: 16px;
-	background-color: $n30;
-  border-radius: 4px;
+	background-color: rgba($fnt01, .1);
+	border-radius: 4px;
+	color: $fnt01;
 
 	&:focus, &:hover {
-		background-color: $n20;
+		background-color: rgba($fnt01, .1);
+		outline: rgba($fnt01, .4) solid 2px;
+		outline-offset: 2px;
   }
   
 	&::placeholder {
-		color: $n80;
+		color: rgba($fnt01, .6);
 	}
 }
 
@@ -54,7 +57,7 @@ input {
 	font-weight: bold;
 	font-size: 17rem;
 	margin: 0;
-	color: $n900;
+	color: $fnt01;
 }
 
 .timer {
@@ -71,6 +74,8 @@ input {
   
   > * {
 		flex: 1;
+		opacity: 1;
+		transition: transform .1s ease-out, opacity .1s ease-out;
 	}
   
   form {
@@ -81,7 +86,7 @@ input {
   input {
 		flex: 1;
 		border: 0;
-    padding: 16px;
+		padding: 16px;
     
     &[type=number]::-webkit-inner-spin-button,
     [type=number]::-webkit-outer-spin-button { 
@@ -96,16 +101,20 @@ input {
 	margin-right: 2rem;
 	background: none;
 	border: 2px solid transparent;
-	color: $n900;
+	color: $fnt01;
 	font-size: 16px;
 	border-radius: 4px;
+	opacity: 1;
+	transition: transform .1s ease-out, opacity .1s ease-out;
   
   &:hover {
-		border: 2px solid $b300;
+		border: 2px solid $fnt01;
   }
   
 	&:focus {
-		border: 2px solid $b300;
+		border: 2px solid $fnt01;
+		outline: rgba($fnt01, .4) solid 2px;
+		outline-offset: 2px;
 	}
 }
 
@@ -116,21 +125,23 @@ input {
 }
 
 .controls__button {
-  outline: none;
 	cursor: pointer;
 	position: relative;
 	width: 250px;
-	// margin-right: 2rem;
 	background: none;
 	border: 2px solid transparent;
 	font-size: 32px;
 	border-radius: 4px;
 	padding: 1rem;
+
+	&:focus {
+		outline: rgba($fnt01, .4) solid 2px;
+		outline-offset: 2px;
+	}
 }
 
 .reset {
   will-change: transform;
-  // outline: none;
 	background-color: $n20;
 	border: 1px solid $n30;
   box-shadow: 0 0 10px -4px rgba($n900, .3);
@@ -141,7 +152,6 @@ input {
 
 .start {
   will-change: transform;
-  // outline: none;
 	color: $n0;
 	background-color: $b300;
 	box-shadow: 0 0 10px -4px rgba(0, 101, 255, .2);
@@ -152,7 +162,6 @@ input {
 
 .pause {
   will-change: transform;
-  // outline: none;
 	color: $n0;
 	background-color: $y300;
 	box-shadow: 0 0 10px -4px rgba(255, 171, 0, .2);
@@ -163,7 +172,6 @@ input {
 
 .continue {
   will-change: transform;
-  // outline: none;
 	color: $n0;
 	background-color: $g300;
 	box-shadow: 0 0 10px -4px rgba(0, 101, 255, .2);
@@ -179,7 +187,7 @@ input {
 		transform: translateY(-3px);
 		background-color: $n30;
 		box-shadow: 0 20px 40px -8px rgba(9, 30, 66, .2);
-  }
+	}
   
 	&:active {
 		box-shadow: none;
@@ -250,19 +258,31 @@ input {
 }
 
 
+// Animations
+
 .fade-on-pause {
   animation: fade-in-out 2s ease-out infinite;
 }
 
 @keyframes fade-in-out {
   0% {
-    color: $n900;
+    color: $fnt01;
   }
   50% {
     // color: $b300;
-    opacity: .7;
+    opacity: .4;
   }
   100% {
-    color: $n900;
+    color: $fnt01;
   }
 }
+
+.fade-out-up {
+	opacity: 0;
+	transform: translateY(-20px);
+}
+
+// .fade-in-down {
+// 	opacity: 1;
+// 	transform: translateY(20px);
+// }
