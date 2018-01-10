@@ -10,7 +10,7 @@ $font_family: 'SuisseIntl', 'Arial', sans-serif;
 html {
 	box-sizing: border-box;
 	font-size: 16px;
-	background: $bg01;
+	background-color: $bg01;
 }
 
 * {
@@ -36,18 +36,29 @@ body {
 }
 
 .display__time-left {
+	will-change: transform;
   font-variant-numeric: tabular-nums;
 	font-weight: bold;
 	font-size: 17rem;
 	margin: 0;
   color: $fnt01;
   opacity: .5;
-  transition: transform .1s ease-out, opacity .3s ease-out;
+  transition: transform .3s ease-out, opacity .6s ease-out;
 }
 
 .semicolon {
   position: relative;
   bottom: 21px;
+}
+
+.countdown-bar {
+	will-change: width;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba($bg06, .2);
+	pointer-events: none;
+	transition: width .1s linear;
 }
 
 .timer {
