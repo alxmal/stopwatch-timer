@@ -5,7 +5,7 @@
 
 @import 'colors';
 
-$font_family: 'SuisseIntl', 'Arial', sans-serif;
+$font_family: 'SuisseIntl', 'Roboto', 'Arial', sans-serif;
 
 html {
 	box-sizing: border-box;
@@ -52,6 +52,7 @@ body {
 }
 
 .countdown-bar {
+  z-index: -1;
 	will-change: width;
 	position: absolute;
 	width: 100vw;

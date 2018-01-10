@@ -1,6 +1,4 @@
-var countdown;
-var secondsLeft;
-var lastTime;
+var countdown, secondsLeft, lastTime, dataTime;
 var timerDisplay = document.querySelector('.display__time-left');
 var timerPresetBlock = document.querySelector('.timer__presets');
 var timePresetButtons = document.querySelectorAll('[data-time]');
@@ -19,7 +17,8 @@ function startTimer(seconds) {
   var countdownBarWidth = countdownBarInitial;
   var now = Date.now();
   var then =  now + seconds * 1000;
-  var step = Math.round(countdownBarWidth / seconds);
+  // var step = Math.round(countdownBarWidth / seconds);
+  var step = countdownBarWidth / seconds;
   lastTime = seconds;
   displayTimeLeft(seconds);
   
@@ -36,6 +35,7 @@ function startTimer(seconds) {
         timerControls.classList.remove('fade-in-up');
         timerRepeatButton.classList.add('fade-in-up');
         toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
+        countdownBar.style.width = 0;
       }
 
       if (secondsLeft < 0) {
@@ -72,8 +72,10 @@ function displayTimeLeft(seconds) {
 
 function setTimePreset() {
   var seconds = parseInt(this.dataset.time);
-  clearInterval(countdown);
+  dataTime = seconds;
+  // clearInterval(countdown);
   countdownBar.style.width = countdownBarInitial + 'px';
+  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (dataTime / 60) + (dataTime < 61 ? ' минуту' : ' минут');
   startTimer(seconds);
   timerDisplay.classList.remove('fade-on-pause');
   timerDisplay.classList.add('scale-up');
@@ -88,13 +90,14 @@ timePresetButtons.forEach(function(button) {
 
 document.customForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  clearInterval(countdown);
+  // clearInterval(countdown);
   var mins = this.minutes.value;
   seconds = mins * 60;
-  startTimer(mins * 60);
-  repeatButton.classList.add('hidden');
-  pauseButton.classList.remove('hidden');
+  startTimer(seconds);
   timerDisplay.classList.remove('fade-on-pause');
+  timerDisplay.classList.add('scale-up');
+  timerControls.classList.add('fade-in-up');
+  timerRepeatButton.classList.remove('fade-in-up');
   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
   this.reset();
 });
