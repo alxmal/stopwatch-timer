@@ -1,5 +1,6 @@
 var countdown;
 var secondsLeft;
+var lastTime;
 var timerDisplay = document.querySelector('.display__time-left');
 var timerPresetBlock = document.querySelector('.timer__presets');
 var timePresetButtons = document.querySelectorAll('[data-time]');
@@ -8,12 +9,14 @@ var repeatButton = document.querySelector('.repeat');
 var resetButton = document.querySelector('.reset');
 var pauseButton = document.querySelector('.pause');
 var continueButton = document.querySelector('.continue');
+var timerRepeatButton = document.querySelector('.timer__repeat');
 // var bgColors = ['#091c6b', '#66ecdb'];
 
 function startTimer(seconds) {
   clearInterval(countdown);
   var now = Date.now();
   var then =  now + seconds * 1000;
+  lastTime = seconds;
   displayTimeLeft(seconds);
   
   countdown = setInterval(function() {
@@ -24,6 +27,7 @@ function startTimer(seconds) {
         timerDisplay.classList.remove('scale-up');
         toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
         timerControls.classList.remove('fade-in-up');
+        timerRepeatButton.classList.add('fade-in-up');
         // repeatButton.classList.remove('hidden');
         clearInterval(countdown);
         return;
@@ -57,11 +61,12 @@ function displayTimeLeft(seconds) {
 
 function setTimePreset() {
   var seconds = parseInt(this.dataset.time);
-  timerDisplay.classList.remove('fade-on-pause');
-  timerDisplay.classList.add('scale-up');
   clearInterval(countdown);
   startTimer(seconds);
+  timerDisplay.classList.remove('fade-on-pause');
+  timerDisplay.classList.add('scale-up');
   timerControls.classList.add('fade-in-up');
+  timerRepeatButton.classList.remove('fade-in-up');
   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
 }
 
@@ -94,13 +99,14 @@ resetButton.addEventListener('click', function(e) {
   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
 });
 
-// repeatButton.addEventListener('click', function(e) {
-//   startTimer(secondsLeft);
-//   startButton.classList.add('hidden');
-//   pauseButton.classList.remove('hidden');
-//   timerDisplay.classList.remove('fade-on-pause');
-//   toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
-// });
+repeatButton.addEventListener('click', function(e) {
+  startTimer(lastTime);
+  timerDisplay.classList.remove('fade-on-pause');
+  timerControls.classList.add('fade-in-up');
+  timerDisplay.classList.add('scale-up');
+  timerRepeatButton.classList.remove('fade-in-up');
+  toggleClassDelayed(timerPresetBlock, 'fade-out-up', 30);
+});
 
 pauseButton.addEventListener('click', function(e) {
   clearInterval(countdown);

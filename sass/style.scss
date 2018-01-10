@@ -42,7 +42,7 @@ body {
 	margin: 0;
   color: $fnt01;
   opacity: .5;
-  transition: transform .2s ease-out, opacity .3s ease-out;
+  transition: transform .1s ease-out, opacity .3s ease-out;
 }
 
 .semicolon {
@@ -129,20 +129,20 @@ body {
 	display: flex;
 	justify-content: space-between;
   padding-bottom: 4rem;
-   opacity: 0;
-   transition: transform .1s ease-out, opacity .1s ease-out;
+  opacity: 0;
+  transition: transform .1s ease-out, opacity .1s ease-out;
 	// transform: translateY(30px);
 }
 
 .controls__button {
 	cursor: pointer;
 	position: relative;
-	width: 250px;
+	min-width: 220px;
 	background: none;
 	border: 2px solid transparent;
 	font-size: 32px;
 	border-radius: 4px;
-	padding: 1rem;
+	padding: 16px 32px 16px 16px;
 	// opacity: 1;
 	// transform: translateY(30px);
 	
@@ -150,39 +150,55 @@ body {
 		outline: rgba($fnt01, .4) solid 2px;
 		outline-offset: 2px;
 	}
+
+	svg	{
+		margin-right: 8px;
+		position: relative;
+		top: 5px;
+		fill: $fnt01;
+	}
+}
+
+.timer__repeat {
+	opacity: 0;
+	transition: transform .1s ease-out, opacity .1s ease-out;
 }
 
 .reset {
-  will-change: transform;
-	background-color: $n20;
-	border: 1px solid $n30;
+	will-change: transform;
+	color: $fnt01;
+	background-color: transparent;
   -webkit-transition: background-color .2s, transform .1s ease-out;
 	-moz-transition: background-color .2s, transform .1s ease-out;
 	transition: background-color .2s, transform .1s ease-out;
 }
 
-.start {
-  will-change: transform;
-	color: $n0;
-	background-color: $b300;
-	-webkit-transition: background-color .2s, transform .1s ease-out;
-	-moz-transition: background-color .2s, transform .1s ease-out;
-	transition: background-color .2s, transform .1s ease-out;
-}
 
 .pause {
-  will-change: transform;
-	color: $n0;
-	background-color: $y300;
+	will-change: transform;
+	color: $fnt01;
+	background-color: transparent;
 	-webkit-transition: background-color .2s, transform .1s ease-out;
 	-moz-transition: background-color .2s, transform .1s ease-out;
 	transition: background-color .2s, transform .1s ease-out;
 }
 
+
 .continue {
-  will-change: transform;
-	color: $n0;
-	background-color: $g300;
+	will-change: transform;
+	color: $fnt01;
+	background-color: transparent;
+	-webkit-transition: background-color .2s, transform .1s ease-out;
+	-moz-transition: background-color .2s, transform .1s ease-out;
+	transition: background-color .2s, transform .1s ease-out;
+}
+
+.repeat {
+	position: relative;
+	bottom: 100px;
+	will-change: transform;
+	color: $fnt01;
+	background-color: transparent;
 	-webkit-transition: background-color .2s, transform .1s ease-out;
 	-moz-transition: background-color .2s, transform .1s ease-out;
 	transition: background-color .2s, transform .1s ease-out;
@@ -192,7 +208,7 @@ body {
   margin-left: 5rem;
 
 	&:hover {
-		background-color: $n30;
+		background-color: $bg03;
 	}
   
 	&:active {
@@ -201,15 +217,14 @@ body {
 	}
 }
 
-.controls__button.start {
-  margin-right: 5rem;
+.controls__button.repeat {
+  // margin-right: 5rem;
 
 	&:hover {
 		background-color: $b400;
   }
   
 	&:active {
-		box-shadow: none;
 		transform: translateY(1px);
 	}
 }
@@ -218,11 +233,10 @@ body {
   margin-right: 5rem;
 
 	&:hover {
-		background-color: $y400;
+		background-color: $b400;
   }
   
 	&:active {
-		box-shadow: none;
 		transform: translateY(1px);
 	}
 }
@@ -231,7 +245,7 @@ body {
   margin-right: 5rem;
 
 	&:hover {
-		background-color: $g400;
+		background-color: $bg04;
   }
   
 	&:active {
@@ -283,6 +297,6 @@ body {
 }
 
 .scale-up {
-  transform: scale(1.1);
+  transform: scale(1.15);
   opacity: 1;
 }
