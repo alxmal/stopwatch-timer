@@ -57,7 +57,7 @@ body {
 	position: absolute;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba($bg06, .2);
+	background-color: rgba($bg06, .4);
 	pointer-events: none;
 	transition: width .1s linear;
 }
@@ -206,8 +206,8 @@ body {
 }
 
 .repeat {
-	position: relative;
-	bottom: 100px;
+	// position: relative;
+	// bottom: 100px;
 	will-change: transform;
 	color: $fnt01;
 	background-color: transparent;

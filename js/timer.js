@@ -66,7 +66,7 @@ function displayTimeLeft(seconds) {
   var minutes = Math.floor(seconds / 60);
   var remainSeconds = seconds % 60;
   var display = minutes + '<span class="semicolon">:</span>' + (remainSeconds < 10 ? '0' : '') + remainSeconds;
-  document.title = display;
+  // document.title = display;
   timerDisplay.innerHTML = display;
 }
 
@@ -75,7 +75,7 @@ function setTimePreset() {
   dataTime = seconds;
   // clearInterval(countdown);
   countdownBar.style.width = countdownBarInitial + 'px';
-  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (dataTime / 60) + (dataTime < 61 ? ' минуту' : ' минут');
+  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (dataTime / 60) + (dataTime < 61 ? ' минуту' : (dataTime > 61 && dataTime < 301 ? ' минуты' : ' минут'));
   startTimer(seconds);
   timerDisplay.classList.remove('fade-on-pause');
   timerDisplay.classList.add('scale-up');
@@ -93,6 +93,9 @@ document.customForm.addEventListener('submit', function(e) {
   // clearInterval(countdown);
   var mins = this.minutes.value;
   seconds = mins * 60;
+  dataTime = seconds;
+  countdownBar.style.width = countdownBarInitial + 'px';
+  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (dataTime / 60) + (dataTime < 61 ? ' минуту' : (dataTime > 61 && dataTime < 301 ? ' минуты' : ' минут'));
   startTimer(seconds);
   timerDisplay.classList.remove('fade-on-pause');
   timerDisplay.classList.add('scale-up');
