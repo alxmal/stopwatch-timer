@@ -13,21 +13,15 @@ var countdownBarInitial = countdownBar.offsetWidth;
 
 function startTimer(seconds, countdownBarWidth) {
   clearInterval(countdown);
-  // var countdownBarWidth = countdownBarInitial;
   var now = Date.now();
   var then =  now + seconds * 1000;
   var step = countdownBarWidth / seconds;
-  // lastTime = seconds;
   displayTimeLeft(seconds);
   
   countdown = setInterval(function() {
     secondsLeft = Math.round((then - Date.now()) / 1000);
     countdownBar.style.width = (countdownBarWidth - step) + 'px';
     countdownBarWidth = countdownBarWidth - step;
-    // console.log(countdownBarWidth);
-    // console.log(countdownBarInitial);
-    // console.log(secondsLeft);
-    // console.log(countdown);
 
       if (secondsLeft === 0) {
         timerDisplay.classList.remove('scale-up');
@@ -48,10 +42,8 @@ function startTimer(seconds, countdownBarWidth) {
 }
 
 function toggleClassDelayed(elem, cssClass, delay) {
-  // debugger;
   var count = 0;
   var delayTimer = setInterval(function() {
-    // console.log(count);
     if (count < elem.children.length) {
       elem.children[count].classList.toggle(cssClass);
       count++;
@@ -62,9 +54,13 @@ function toggleClassDelayed(elem, cssClass, delay) {
 }
 
 function displayTimeLeft(seconds) {
-  var minutes = Math.floor(seconds / 60);
   var remainSeconds = seconds % 60;
-  var display = minutes + '<span class="semicolon">:</span>' + (remainSeconds < 10 ? '0' : '') + remainSeconds;
+  var minutes = Math.floor(seconds / 60);
+  var remainMinutes = minutes % 60;
+  var hours = Math.floor(minutes / 60);
+  console.log(remainMinutes);
+  console.log(hours);
+  var display = (hours > 0 ? (hours + '<span class="semicolon">:</span>') : '') + ((remainMinutes < 10 ? '0' : '') + remainMinutes) + '<span class="semicolon">:</span>' + (remainSeconds < 10 ? '0' : '') + remainSeconds;
   timerDisplay.innerHTML = display;
 }
 
