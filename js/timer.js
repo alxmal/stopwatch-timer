@@ -68,7 +68,7 @@ function setTimePreset() {
   var seconds = parseInt(this.dataset.time);
   lastTime = seconds;
   countdownBar.style.width = countdownBarInitial + 'px';
-  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (lastTime / 60) + (lastTime < 61 ? ' минуту' : (lastTime > 61 && lastTime < 301 ? ' минуты' : ' минут'));
+  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (lastTime / 60) + (lastTime < 61 ? ' минуту' : (lastTime > 61 && lastTime < 300 ? ' минуты' : ' минут'));
   startTimer(seconds, countdownBarInitial);
   timerDisplay.classList.remove('fade-on-pause');
   timerDisplay.classList.add('scale-up');
@@ -87,7 +87,7 @@ document.customForm.addEventListener('submit', function(e) {
   seconds = mins * 60;
   lastTime = seconds;
   countdownBar.style.width = countdownBarInitial + 'px';
-  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (lastTime / 60) + (lastTime < 61 ? ' минуту' : (lastTime > 61 && lastTime < 301 ? ' минуты' : ' минут'));
+  repeatButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново ' + (lastTime / 60) + (lastTime < 61 ? ' минуту' : (lastTime > 61 && lastTime < 300 ? ' минуты' : ' минут'));
   startTimer(seconds, countdownBarInitial);
   timerDisplay.classList.remove('fade-on-pause');
   timerDisplay.classList.add('scale-up');
@@ -100,7 +100,7 @@ document.customForm.addEventListener('submit', function(e) {
 resetButton.addEventListener('click', function(e) {
   clearInterval(countdown);
   countdownBar.style.width = countdownBarInitial + 'px';
-  timerDisplay.innerHTML = '0<span class="semicolon">:</span>00';
+  timerDisplay.innerHTML = '00<span class="semicolon">:</span>00';
   timerDisplay.classList.remove('fade-on-pause');
   timerControls.classList.remove('fade-in-up');
   timerDisplay.classList.remove('scale-up');
