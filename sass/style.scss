@@ -17,7 +17,7 @@ html {
 	box-sizing: inherit;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;
 
 	&:before {
 		box-sizing: inherit;
@@ -35,19 +35,65 @@ body {
 	font-family: $font_family;
 }
 
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 5;
+	top: 0;
+	right: 0;
+	background-color: $bg06;
+	overflow-x: hidden;
+	padding-top: 100px;
+	transition: 0.2s;
+	box-shadow: -12px 0 24px -8px rgba($bg06, .8);
+
+	.nav-close-btn {
+    position: absolute;
+    top: 13px;
+    right: 0;
+    font-size: 50px;
+		margin-right: 32px;
+	}
+
+	.is-active {
+		color: #fff !important;
+	}
+	
+	a {
+		padding: 8px 8px 8px 64px;
+    text-decoration: none;
+    font-size: 32px;
+		color: $fnt01;
+		text-align: left;
+    display: block;
+		transition: 0.1s;
+
+		
+		&:hover {
+			opacity: .6;
+		}
+		
+		&:active {
+			transform: scale(.99);
+		}
+	}
+}
+
 .display__time-left {
 	will-change: transform;
   font-variant-numeric: tabular-nums;
 	font-weight: bold;
-	font-size: 17rem;
+	font-size: 15rem;
+	padding-bottom: 80px;
 	margin: 0;
   color: $fnt01;
   opacity: .5;
 	transition: transform .3s ease-out, opacity .6s ease-out;
 	
-	&:hover {
-		transform: scale(1.02);
-	}
+	// &:hover {
+	// 	transform: scale(1.02);
+	// }
 }
 
 .semicolon {
@@ -70,13 +116,41 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
+
+	.menu-btn{
+		position: absolute;
+		cursor: pointer;
+		top: 32px;
+		right: 32px;
+		background: none;
+		border: none;
+		padding: 0;
+		color: $fnt01;
+		opacity: 1;
+		transition: opacity .1s ease-out;
+
+		svg	{
+			// margin-right: 8px;
+			// position: relative;
+			// top: 5px;
+			fill: $fnt01;
+		}
+
+		&:hover {
+			opacity: .6;
+		}
+
+		&:active {
+			transform: scale(.95);
+		}
+	}
 }
 
 .timer__presets {
 	display: flex;
-	padding-top: 5rem;
-	padding-left: 5rem;
-	padding-right: 5rem;
+	padding-top: 32px;
+	padding-left: 48px;
+	padding-right: 140px;
   
   > * {
 		flex: 1;
@@ -142,9 +216,12 @@ body {
 }
 
 .timer__controls {
+	width: 100%;
+	position: absolute;
+	bottom: 16px;
 	display: flex;
-	justify-content: space-between;
-  padding-bottom: 4rem;
+	justify-content: space-around;
+  // padding-bottom: 4rem;
   opacity: 0;
   transition: transform .1s ease-out, opacity .1s ease-out;
 	// transform: translateY(30px);
@@ -152,7 +229,7 @@ body {
 
 .controls__button {
 	cursor: pointer;
-	position: relative;
+	// position: relative;
 	min-width: 220px;
 	background: none;
 	border: 2px solid transparent;
@@ -176,6 +253,9 @@ body {
 }
 
 .timer__repeat {
+	width: 100%;
+	position: absolute;
+	bottom: 16px;
 	opacity: 0;
 	transition: transform .1s ease-out, opacity .1s ease-out;
 }
@@ -221,7 +301,7 @@ body {
 }
 
 .controls__button.reset {
-  margin-left: 5rem;
+  // margin-left: 5rem;
 
 	&:hover {
 		background-color: $bg03;
@@ -246,7 +326,7 @@ body {
 }
 
 .controls__button.pause {
-  margin-right: 5rem;
+  // margin-right: 5rem;
 
 	&:hover {
 		background-color: $b400;
@@ -258,7 +338,7 @@ body {
 }
 
 .controls__button.continue {
-  margin-right: 5rem;
+  // margin-right: 5rem;
 
 	&:hover {
 		background-color: $bg04;
