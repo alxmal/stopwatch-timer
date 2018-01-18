@@ -11,6 +11,7 @@ var timerRepeatButton = document.querySelector('.timer__repeat');
 var countdownBar = document.querySelector('.countdown-bar');
 var navButtonClose = document.querySelector('.nav-close-btn');
 var navButtonOpen = document.querySelector('.menu-btn');
+var revealer = document.querySelector('.revealer');
 var countdownBarInitial = countdownBar.offsetWidth;
 var titles = ['минуту', 'минуты', 'минут'];
 
