@@ -52,23 +52,18 @@ body {
 		left: 100%;
 		background: #ddd;
 		box-shadow: 12px 0 24px -8px rgba($bg06, .8);
-		
-		
-		
 	}
-		&animate {
-			animation: reveal-effect-1 1.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) forwards;
-		
-		&:nth-child(2) {
-			animation-name: reveal-effect-2;
-			background-color: red;
-		}
+}
+
+.revealer--animate {
+	animation: reveal-effect-1 1.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) forwards;
+	.revealer__layer:nth-child(2) {
+		animation-name: reveal-effect-2;
+		background: red;
 	}
-	
-	
-	
-	.revealer--animate .revealer__layer:nth-child(3) {
+	.revealer__layer:nth-child(3) {
 		animation-name: reveal-effect-3;
+		background: black;
 	}
 }
 
