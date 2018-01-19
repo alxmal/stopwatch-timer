@@ -9,9 +9,12 @@ var pauseButton = document.querySelector('.pause');
 var continueButton = document.querySelector('.continue');
 var timerRepeatButton = document.querySelector('.timer__repeat');
 var countdownBar = document.querySelector('.countdown-bar');
-var navButtonClose = document.querySelector('.nav-close-btn');
-var navButtonOpen = document.querySelector('.menu-btn');
+var navMenu = document.querySelector('.sidemenu');
+var navMenuItems = document.querySelectorAll('a');
+var navButtonClose = document.querySelector('.menu-close-btn');
+var navButtonOpen = document.querySelector('.menu-open-btn');
 var revealer = document.querySelector('.revealer');
+var revealerLayer = revealer.querySelector('.revealer__layer');
 var countdownBarInitial = countdownBar.offsetWidth;
 var titles = ['минуту', 'минуты', 'минут'];
 
@@ -67,8 +70,8 @@ function displayTimeLeft(seconds) {
   var minutes = Math.floor(seconds / 60);
   var remainMinutes = minutes % 60;
   var hours = Math.floor(minutes / 60);
-  console.log(remainMinutes);
-  console.log(hours);
+  // console.log(remainMinutes);
+  // console.log(hours);
   var display = (hours > 0 ? (hours + '<span class="semicolon">:</span>') : '') + ((remainMinutes < 10 ? '0' : '') + remainMinutes) + '<span class="semicolon">:</span>' + (remainSeconds < 10 ? '0' : '') + remainSeconds;
   timerDisplay.innerHTML = display;
 }
@@ -88,12 +91,62 @@ function setTimePreset() {
 }
 
 function openNav() {
-  document.querySelector('.sidenav').style.width = "400px";
+  document.querySelector('.sidemenu').style.width = '350px';
+  navButtonOpen.style.visibility = 'hidden';
+  navButtonClose.style.visibility = 'visible';
 }
 
 function closeNav() {
-  document.querySelector('.sidenav').style.width = "0";
+  setTimeout(function() {
+    document.querySelector('.sidemenu').style.width = '0';
+    navButtonOpen.style.visibility = 'visible';
+    navButtonClose.style.visibility = 'hidden';
+  }, 100);
 }
+
+function startRevealer() {
+  revealer.classList.add('revealer--animate');
+  closeNav();
+
+  setTimeout(function() {
+    revealer.classList.remove('revealer--animate');
+  }, 1000);
+}
+
+// navMenuItems.forEach(function(item) {
+//   item.addEventListener('click', startRevealer);
+// });
+
+// navMenuItems.forEach(function(item) {
+//   item.addEventListener('click', function() {
+//     startRevealer();
+//     var isActive = this.parentNode.querySelector('.is-active');
+//     var target = document.getElementById(this.getAttribute('href').replace('#', ''))
+//     var isCurrent = target.parentNode.querySelector('.page--current');
+//     if (isActive) isActive.classList.remove('is-active');
+//     if (isCurrent) isCurrent.classList.remove('page--current');
+//     this.classList.add('is-active');
+//     target.classList.add('page--current');
+//   });
+// });
+
+navMenuItems.forEach(function(item) {
+  item.addEventListener('click', function() {
+    startRevealer();
+    var isActive = this.parentNode.querySelector('.is-active');
+    var target = document.getElementById(this.getAttribute('href').replace('#', ''))
+    var isCurrent = target.parentNode.querySelector('.page--current');
+
+    if (isActive) isActive.classList.remove('is-active');
+    this.classList.add('is-active');
+
+    setTimeout(function() {
+      if (isCurrent) isCurrent.classList.remove('page--current');
+      target.classList.add('page--current');
+      target.classList.add('slide-in');
+    }, 500)
+  });
+});
 
 timePresetButtons.forEach(function(button) {
   button.addEventListener('click', setTimePreset)
@@ -155,10 +208,10 @@ continueButton.addEventListener('click', function(e) {
 
 navButtonClose.addEventListener('click', function(e) {
   closeNav();
-  console.log('Closed');
+  // console.log('Closed');
 })
 
 navButtonOpen.addEventListener('click', function(e) {
   openNav();
-  console.log('Opened');
+  // console.log('Opened');
 })

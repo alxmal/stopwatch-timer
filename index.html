@@ -8,40 +8,56 @@
   <link rel="stylesheet" href="/css/style.min.css">
 </head>
 <body>
-  <div class="revealer">
-    <div class="revealer__layer"></div>
-    <div class="revealer__layer"></div>
-    <div class="revealer__layer"></div>
-  </div>
-  <div class="sidenav">
-    <a href="#" class="nav-close-btn">&times;</a>
-    <a href="#">Timer</a>
-    <a href="#" class="is-active">Stopwatch</a>
-    <a href="#">Clock</a>
-  </div>
-  <div class="timer">
-    <button class="menu-btn"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><title> menu</title><rect width="24" height="24" fill="none"/><path d="M3,18H21V16H3v2Zm0-5H21V11H3v2ZM3,6V8H21V6Z"/></svg></button>
-    <div class="timer__presets">
-      <button data-time="5" class="timer__button">Cекунды для тестов</button>
-      <button data-time="60" class="timer__button">1 минута</button>
-      <button data-time="300" class="timer__button">5 минут</button>
-      <button data-time="1800" class="timer__button">30 минут</button>
-      <button data-time="2700" class="timer__button">45 минут</button>
-      <form name="customForm"><input type="number" name="minutes" placeholder="Введите минуты"></form>
+  <div class="container">
+    <div class="revealer">
+      <div class="revealer__layer"></div>
+      <div class="revealer__layer"></div>
+      <div class="revealer__layer"></div>
     </div>
-    <div class="display">
-      <h1 class="display__time-left">00<span class="semicolon">:</span>00</h1>
+    <button class="menu-open-btn"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><title> menu</title><rect width="24" height="24" fill="none"/><path d="M3,18H21V16H3v2Zm0-5H21V11H3v2ZM3,6V8H21V6Z"/></svg></button>
+    <button class="menu-close-btn">&times;</button>
+    <div class="sidemenu">
+      <a href="#Timer" class="is-active">Timer</a>
+      <a href="#Stopwatch">Stopwatch</a>
+      <a href="#Clock">Clock</a>
     </div>
-    <div class="timer__repeat">
-      <button class="controls__button repeat"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново</button>
+    <div class="pages">
+      <div id="Timer" class="page timer page--current">
+        <div class="timer__presets">
+          <button data-time="5" class="timer__button">Cекунды для тестов</button>
+          <button data-time="60" class="timer__button">1 минута</button>
+          <button data-time="300" class="timer__button">5 минут</button>
+          <button data-time="1800" class="timer__button">30 минут</button>
+          <button data-time="2700" class="timer__button">45 минут</button>
+          <form name="customForm"><input type="number" name="minutes" placeholder="Введите минуты"></form>
+        </div>
+        <div class="display">
+          <h1 class="display__time-left">00<span class="semicolon">:</span>00</h1>
+        </div>
+        <div class="timer__repeat">
+          <button class="controls__button repeat"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> refresh</title><rect width="24" height="24" fill="none"/><path d="M17.64,6.35A8,8,0,0,0,11.16,4a8,8,0,1,0,8.56,10H17.64A6,6,0,1,1,12,6a5.91,5.91,0,0,1,4.22,1.78L13,11h7V4L17.64,6.35Z"/></svg>Запустить заново</button>
+        </div>
+        <div class="timer__controls">
+          <button class="controls__button reset"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> close</title><rect width="24" height="24" fill="none"/><polygon points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41"/></svg>Сбросить</button>
+          <button class="controls__button pause"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title>pause</title><rect width="24" height="24" fill="none"/><g><rect x="5.5" y="5" width="5" height="14" rx="1" ry="1"/><rect x="13.5" y="5" width="5" height="14" rx="1" ry="1"/></g></svg>Пауза</button>
+          <button class="controls__button continue hidden
+          "><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title>play</title><rect width="24" height="24" fill="none"/><path d="M7,18.05V5.95A1,1,0,0,1,8.37,5.1l10.1,6.05a1,1,0,0,1,0,1.7L8.37,18.9A1,1,0,0,1,7,18.05Z"/></svg>Продолжить</button>
+        </div>
+        <div class="countdown-bar"></div>
+      </div>
+      <div id="Stopwatch" class="page stopwatch">
+        <h1 style="color:bisque">Stopwatch</h1>
+        <div class="display">
+          <h1 style="color:bisque" class="display__time-left">00<span class="semicolon">:</span>00</h1>
+        </div>
+      </div>
+      <div id="Clock" class="page clock">
+        <h1 style="color:#00877b">Clock</h1>
+        <div class="display">
+          <h1 style="color:#00877b" class="display__time-left">00<span class="semicolon">:</span>00</h1>
+        </div>
+      </div>
     </div>
-    <div class="timer__controls">
-      <button class="controls__button reset"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title> close</title><rect width="24" height="24" fill="none"/><polygon points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41"/></svg>Сбросить</button>
-      <button class="controls__button pause"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title>pause</title><rect width="24" height="24" fill="none"/><g><rect x="5.5" y="5" width="5" height="14" rx="1" ry="1"/><rect x="13.5" y="5" width="5" height="14" rx="1" ry="1"/></g></svg>Пауза</button>
-      <button class="controls__button continue hidden
-      "><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><title>play</title><rect width="24" height="24" fill="none"/><path d="M7,18.05V5.95A1,1,0,0,1,8.37,5.1l10.1,6.05a1,1,0,0,1,0,1.7L8.37,18.9A1,1,0,0,1,7,18.05Z"/></svg>Продолжить</button>
-    </div>
-    <div class="countdown-bar"></div>
   </div>
   <script src="/js/timer.js"></script>
 </body>

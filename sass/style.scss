@@ -1,17 +1,14 @@
+@import 'colors';
 @font-face {
   font-family: 'SuisseIntl';
   src:  url('../fonts/SuisseIntl-Regular.woff') format('woff')
 }
-
-@import 'colors';
-// @import 'animations';
 
 $font_family: 'SuisseIntl', 'Roboto', 'Arial', sans-serif;
 
 html {
 	box-sizing: border-box;
 	font-size: 16px;
-	background-color: $bg01;
 	overflow: hidden; 
 }
 
@@ -41,38 +38,92 @@ body {
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
-	z-index: 1000;
+	z-index: 5;
 	pointer-events: none;
+	will-change: transform;
 
 	.revealer__layer {
 		position: absolute;
 		width: 100%;
 		height: 100%;
 		top: 0;
-		left: 100%;
-		background: #ddd;
-		box-shadow: 12px 0 24px -8px rgba($bg06, .8);
+		right: 100%;
+		box-shadow: 12px 0 32px -4px rgba($n900, .1);
 	}
 }
 
-.revealer--animate {
-	animation: reveal-effect-1 1.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) forwards;
-	.revealer__layer:nth-child(2) {
-		animation-name: reveal-effect-2;
-		background: red;
+.revealer--animate .revealer__layer {
+	animation: reveal-effect-1 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+	background: $bg01;
+}
+
+.revealer--animate .revealer__layer:nth-child(2) {
+	animation-name: reveal-effect-2;
+	background: $b300;
+	// opacity: .1;
+}
+
+.revealer--animate .revealer__layer:nth-child(3) {
+	animation-name: reveal-effect-3;
+	background: $b500;
+	// opacity: .05;
+}
+
+.menu-open-btn {
+	position: absolute;
+	cursor: pointer;
+	top: 32px;
+	right: 32px;
+	background: none;
+	border: none;
+	padding: 0;
+	color: $fnt01;
+	opacity: 1;
+	z-index: 15;
+	transition: opacity .1s ease-out;
+
+	svg	{
+		fill: $fnt01;
 	}
-	.revealer__layer:nth-child(3) {
-		animation-name: reveal-effect-3;
-		background: black;
+
+	&:hover {
+		opacity: .6;
+	}
+
+	&:active {
+		transform: scale(.95);
 	}
 }
 
+.menu-close-btn {
+	position: absolute;
+	top: 22px;
+	right: 9px;
+	font-size: 50px;
+	margin-right: 32px;
+	background: none;
+	border: none;
+	padding: 0;
+	color: $fnt01;
+	opacity: 1;
+	z-index: 15;
+	visibility: hidden;
+	transition: opacity .1s ease-out;
 
-.sidenav {
+	&:hover {
+		opacity: .6;
+	}
+
+	&:active {
+		transform: scale(.95);
+	}
+}
+
+.sidemenu {
 	height: 100%;
 	width: 0;
 	position: fixed;
-	z-index: 5;
+	z-index: 10;
 	top: 0;
 	right: 0;
 	background-color: $bg06;
@@ -80,17 +131,10 @@ body {
 	padding-top: 100px;
 	transition: 0.2s;
 	box-shadow: -12px 0 24px -8px rgba($bg06, .8);
-
-	.nav-close-btn {
-    position: absolute;
-    top: 13px;
-    right: 0;
-    font-size: 50px;
-		margin-right: 32px;
-	}
+	cursor: pointer;
 
 	.is-active {
-		color: #fff !important;
+		color: #fff;
 	}
 	
 	a {
@@ -123,10 +167,6 @@ body {
   color: $fnt01;
   opacity: .5;
 	transition: transform .3s ease-out, opacity .6s ease-out;
-	
-	// &:hover {
-	// 	transform: scale(1.02);
-	// }
 }
 
 .semicolon {
@@ -145,37 +185,40 @@ body {
 	transition: width .1s linear;
 }
 
-.timer {
+.pages {
+	position: relative;
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
+	z-index: 0;
 	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
 
-	.menu-btn{
-		position: absolute;
-		cursor: pointer;
-		top: 32px;
-		right: 32px;
-		background: none;
-		border: none;
-		padding: 0;
-		color: $fnt01;
-		opacity: 1;
-		transition: opacity .1s ease-out;
+	.page {
+		min-height: 100vh;
+		min-width: 100vw;
+		flex-direction: column;
+		display: none;
+	}
+	
+	.timer {
+	background-color: $bg01;
+	}	
+	
+	.stopwatch {
+	background-color: $bg03;
+	}
+	
+	.clock {
+	background-color: $bg05;
+	}
+	
+	.page--current {
+		display: flex;
+    position: relative;
+	}
 
-		svg	{
-			// margin-right: 8px;
-			// position: relative;
-			// top: 5px;
-			fill: $fnt01;
-		}
-
-		&:hover {
-			opacity: .6;
-		}
-
-		&:active {
-			transform: scale(.95);
-		}
+	.slide-in {
+		animation: slideIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 	}
 }
 
@@ -254,23 +297,18 @@ body {
 	bottom: 16px;
 	display: flex;
 	justify-content: space-around;
-  // padding-bottom: 4rem;
   opacity: 0;
   transition: transform .1s ease-out, opacity .1s ease-out;
-	// transform: translateY(30px);
 }
 
 .controls__button {
 	cursor: pointer;
-	// position: relative;
-	min-width: 220px;
+	min-width: 240px;
 	background: none;
 	border: 2px solid transparent;
 	font-size: 32px;
 	border-radius: 4px;
 	padding: 16px 32px 16px 16px;
-	// opacity: 1;
-	// transform: translateY(30px);
 	
 	&:focus {
 		outline: rgba($fnt01, .4) solid 2px;
@@ -323,8 +361,6 @@ body {
 }
 
 .repeat {
-	// position: relative;
-	// bottom: 100px;
 	will-change: transform;
 	color: $fnt01;
 	background-color: transparent;
@@ -334,50 +370,38 @@ body {
 }
 
 .controls__button.reset {
-  // margin-left: 5rem;
-
 	&:hover {
 		background-color: $bg03;
 	}
-  
-	&:active {
+  &:active {
 		box-shadow: none;
 		transform: translateY(1px);
 	}
 }
 
 .controls__button.repeat {
-  // margin-right: 5rem;
-
 	&:hover {
 		background-color: $b400;
   }
-  
-	&:active {
+  &:active {
 		transform: translateY(1px);
 	}
 }
 
 .controls__button.pause {
-  // margin-right: 5rem;
-
 	&:hover {
 		background-color: $b400;
   }
-  
-	&:active {
+  &:active {
 		transform: translateY(1px);
 	}
 }
 
 .controls__button.continue {
-  // margin-right: 5rem;
-
 	&:hover {
 		background-color: $bg04;
   }
-  
-	&:active {
+  &:active {
 		box-shadow: none;
 		transform: translateY(1px);
 	}
@@ -404,7 +428,6 @@ body {
     color: $fnt01;
   }
   50% {
-    // color: $b300;
     opacity: .2;
   }
   100% {
@@ -432,11 +455,11 @@ body {
 		transform: translate3d(0, 0, 0);
 	}
 	25%, 75% {
-		transform: translate3d(-100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
 		animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	}
 	100% {
-		transform: translate3d(-200%, 0, 0);
+		transform: translate3d(200%, 0, 0);
 	}
 }
 
@@ -459,7 +482,18 @@ body {
 		animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 	}
 	75%, 100% {
-		transform: translate3d(-200%, 0, 0);
+		transform: translate3d(200%, 0, 0);
 	}
 }
 
+@keyframes slideIn {
+	0%,
+	65% {
+		-webkit-transform: translate3d(-175px, 0, 0);
+		transform: translate3d(-175px, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
